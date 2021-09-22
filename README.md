@@ -7,6 +7,6 @@ My first discord bot coded in Python using Discord API. Sends random motivationa
 
 # commands
 
--*hello -> Say hi to the bot
--*motivate -> Get a random motivational quote
--*responding<space>(insert 'true' or 'false') -> toggle bot's response to sad words
+- *hello -> Say hi to the bot
+- *motivate -> Get a random motivational quote
+- *responding<space>(insert 'true' or 'false') -> toggle bot's response to sad words
