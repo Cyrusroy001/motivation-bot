@@ -1,5 +1,5 @@
 # motivation-bot
-My first discord bot coded in Python using Discord API. Sends random motivational quotes after a trigger message. The bot is able to detect "sad" words in a message and replies encouraging texts in return. I hope you enjoy using it. :smile:
+My first discord bot coded in Python using Discord API. Sends random motivational quotes after a trigger message. The bot is able to detect "sad" words in a message and replies encouraging texts in return. This bot is cloud-based so it will be up and running 20x7. I hope you enjoy using it. :smile:
 
 # to-use
 
