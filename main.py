@@ -97,9 +97,9 @@ async def on_message(message):
   #   await message.channel.send(eng)
 
   if message.content.startswith('*responding'):
-    if message.author.name != 'Cy':
-      await message.channel.send('You are not my master :/')
-      return 
+    # if message.author.name != 'Cy':
+    #   await message.channel.send('You are not my master :/')
+    #   return 
 
     value = message.content.split('*responding ', 1)[1]
     if value.lower() == 'true':
