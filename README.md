@@ -9,5 +9,7 @@ https://discord.com/oauth2/authorize?client_id=890203186965676032&permissions=53
 #commands
 
 *hello -> Say hi to the bot
+
 *motivate -> Get a random motivational quote
+
 *responding<space>(insert 'true' or 'false') -> toggle bot's response to sad words
