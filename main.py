@@ -28,6 +28,12 @@ starter_encouragements = [
 if "responding" not in db.keys():
   db["responding"] = True
 
+if "bully_mode" not in db.keys():
+  db["bully_mode"] = True
+
+if "victim" not in db.keys():
+  db["victim"] = "suweshhh"
+
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
@@ -59,12 +65,47 @@ async def on_message(message):
     return
   
   if message.content.startswith('*hello'):
-    await message.channel.send("Hi, I'm a bot created by Master Cyrus: The Motivation Bot!")
+    await message.channel.send("Hi, I'm a bot created by Master Cyrus: The Motivation Bot and I bully people as a side-job! :grin:")
 
   if message.content.startswith("*motivate"):
     quote = get_quote()
     await message.channel.send(quote)
-  
+
+  #instructions:
+  if message.content.startswith('*tips'):
+    tips = "WELCOME TO MOTIVATION BOT 2.0 :grin:\n*hello -> say hi to the bot\n*motivate -> get a random motivational quote\n*bully<space>(true/false) -> toggle bully mode\n*responding<space>(true/false) -> toggle response to sad words\n*victim<space>(name) -> bot bullies this person now"
+    await message.channel.send(tips)
+
+  #bully toggle----------------------------------------------
+  if message.content.startswith('*bully'):
+    if message.author.name != 'Cy':
+      await message.channel.send('You are not my master, you dumb fuck! :rofl:')
+      return 
+
+    value = message.content.split('*bully ', 1)[1]
+    if value.lower() == 'true':
+      db['bully_mode'] = True
+      await message.channel.send('I will bully {}. :stuck_out_tongue: '.format(db["victim"].upper()))
+    elif value.lower() == 'false':
+      db['bully_mode'] = False
+      await message.channel.send('I will not bully {}. :pensive:'.format(db["victim"].upper()))
+
+  #victim setter--------------------------------------------
+  if message.content.startswith('*victim'):
+    if message.author.name != 'Cy':
+      await message.channel.send('You are not my master, you dumb fuck! :joy:')
+      return 
+
+    value = message.content.split('*victim ', 1)[1]
+    db['victim'] = value.lower()
+    await message.channel.send('I will bully {} now. :stuck_out_tongue: '.format(db["victim"].upper()))
+
+  #bully module--------------------------------------------
+  if db['bully_mode']:
+    if message.author.name.lower() == db["victim"]:
+      await message.channel.send('shut up {} you dumb fuck i wont listen to you :joy:'.format(db["victim"].upper()))
+      return
+ 
   if db["responding"]:
     options = starter_encouragements
     # if "encouragements" in db.keys():
@@ -96,22 +137,27 @@ async def on_message(message):
   #     eng = str(db["encouragements"].value)
   #   await message.channel.send(eng)
 
+   
+  #responding toggle---------------------------------------
   if message.content.startswith('*responding'):
-    # if message.author.name != 'Cy':
-    #   await message.channel.send('You are not my master :/')
-    #   return 
+    if message.author.name != 'Cy':
+      await message.channel.send('You are not my master, you dumb fuck! :joy:')
+      return 
 
     value = message.content.split('*responding ', 1)[1]
     if value.lower() == 'true':
       db['responding'] = True
-      await message.channel.send('I will respond to sad words.')
+      await message.channel.send('I will respond to sad words. :+1:')
     elif value.lower() == 'false':
       db['responding'] = False
-      await message.channel.send('I will not respond to sad words.')
-
-
+      await message.channel.send('I will not respond to sad words. :-1:')
+  
+  #tagging module------------------------------------------
+  if message.content.startswith('*tag'):
+    value = message.content.send()
+#thanks module------------------------------------------------
   if 'thank' in message.content:
-   await message.channel.send('I only helped you because you have a HUGE ass ;)')
+   await message.channel.send('Mention not! I only helped you because you have a HUGE ass :wink:')
 
 keep_alive()
 
